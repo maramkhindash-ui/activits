@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هدف تعليمي: افتح</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Tahoma, Arial, sans-serif;
+    background: #eef2f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 40px;
+  }
+
+  .stepper {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .step-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #d0d8e0;
+    color: #888;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .step.active .step-circle { background: #9C27B0; color: white; }
+  .step.done   .step-circle { background: #4CAF50; color: white; }
+  .step-label { font-size: 12px; color: #555; }
+
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    padding: 22px 18px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .card.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-title {
+    background: #9C27B0;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .label {
+    margin-top: 14px;
+    font-weight: bold;
+    color: #222;
+    font-size: 14px;
+  }
+
+  .box {
+    background: #f7f7f7;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .video-section h3 {
+    text-align: center;
+    color: #9C27B0;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .video-link-box {
+    background: #f3e5f5;
+    border: 1px solid #ce93d8;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .video-link-box a {
+    color: #4a148c;
+    font-size: 13px;
+    word-break: break-all;
+    text-decoration: underline;
+  }
+
+  .video-embed {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: none;
+  }
+
+  .instructions-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .instruction-card {
+    background: #faf0fd;
+    border: 1px solid #e1bee7;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .instruction-card .icon { font-size: 32px; }
+
+  .no-activity-box {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .no-activity-box .big-icon { font-size: 48px; margin-bottom: 10px; }
+
+  .no-activity-box h3 {
+    font-size: 16px;
+    color: #e65100;
+    margin-bottom: 10px;
+  }
+
+  .no-activity-box p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .reason-box {
+    background: #f3f3f3;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.9;
+  }
+
+  .reason-box strong { color: #9C27B0; }
+
+  .eval-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #222;
+  }
+
+  .eval-label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .eval-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+
+  .radio-group { margin-top: 14px; }
+  .radio-group .radio-title { font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+  .radio-options { display: flex; gap: 20px; align-items: center; }
+  .radio-options label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .info-box {
+    margin-top: 14px;
+    background: #f8f8f8;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 2;
+    color: #444;
+  }
+
+  .eval-buttons { display: flex; gap: 8px; margin-top: 18px; }
+
+  .eval-buttons button {
+    flex: 1;
+    padding: 12px 6px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+
+  .btn-save     { background: #28a745; }
+  .btn-download { background: #007bff; }
+  .btn-delete   { background: #dc3545; }
+
+  .nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+    justify-content: center;
+  }
+
+  .nav button {
+    padding: 11px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: Tahoma, Arial, sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .btn-next    { background: #9C27B0; color: white; }
+  .btn-prev    { background: #e0e0e0; color: #333; }
+  .btn-restart { background: #4CAF50; color: white; display: none; }
+</style>
+</head>
+<body>
+
+<div class="stepper">
+  <div class="step active" id="s1" onclick="goTo(1)">
+    <div class="step-circle">1</div>
+    <div class="step-label">البطاقة</div>
+  </div>
+  <div class="step" id="s2" onclick="goTo(2)">
+    <div class="step-circle">2</div>
+    <div class="step-label">الفيديو</div>
+  </div>
+  <div class="step" id="s3" onclick="goTo(3)">
+    <div class="step-circle">3</div>
+    <div class="step-label">النشاط</div>
+  </div>
+  <div class="step" id="s4" onclick="goTo(4)">
+    <div class="step-circle">4</div>
+    <div class="step-label">التقييم</div>
+  </div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="card active" id="page1">
+  <div class="page-title">هدف تعليمي: "افتح"</div>
+
+  <div class="label">🎯 الهدف</div>
+  <div class="box">
+    أن يقوم الطفل بفتح الأشياء المغلقة عند الطلب (مثل فتح العلبة أو الباب أو الحقيبة).
+  </div>
+
+  <div class="label">🧠 المهارة المستهدفة</div>
+  <div class="box">
+    المهارات الحركية الدقيقة، اتباع التعليمات، والاستقلالية.
+  </div>
+
+  <div class="label">👨‍👩‍👧 طريقة التطبيق للأهل</div>
+  <div class="box">
+    1- اختاري شيء سهل الفتح (علبة، علبة مناديل، حقيبة).<br>
+    2- ضعي الشيء أمام الطفل وهو مغلق.<br>
+    3- قولي: "افتح".<br>
+    4- انتظري 3–5 ثواني ليحاول بنفسه.<br>
+    5- إذا نجح، امدحيه فوراً.<br>
+    6- إذا لم يستجب، ساعديه بفتح الشيء بيده.<br>
+    7- كرري النشاط يومياً لزيادة الاستقلالية.
+  </div>
+
+  <div class="label">⭐ التعزيز</div>
+  <div class="box">
+    تعزيز فوري: ابتسامة + تصفيق + مكافأة بسيطة (حسب ما يحبه الطفل).
+  </div>
+
+  <div class="nav">
+    <button class="btn-next" onclick="goTo(2)">التالي ←</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card" id="page2">
+  <div class="video-section">
+    <h3>🎬 فيديو المهارة</h3>
+
+    <div class="video-link-box">
+      <a href="https://youtu.be/K4IkWdRSNrE?feature=shared" target="_blank">
+        https://youtu.be/K4IkWdRSNrE?feature=shared
+      </a>
+    </div>
+
+    <iframe
+      class="video-embed"
+      src="https://www.youtube.com/embed/K4IkWdRSNrE"
+      allowfullscreen
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
+
+    <div class="instructions-title">📋 تعليمات قبل المشاهدة:</div>
+
+    <div class="instruction-card">
+      <div class="icon">👁️</div>
+      <div>شاهد الفيديو مع الطفل معاً لتحفيز التقليد</div>
+    </div>
+
+    <div class="instruction-card">
+      <div class="icon">🔄</div>
+      <div>يمكن إعادة تشغيل الفيديو أكثر من مرة</div>
+    </div>
+
+    <div class="instruction-card">
+      <div class="icon">🔊</div>
+      <div>تأكد من ضبط الصوت بشكل مناسب قبل البدء</div>
+    </div>
+
+    <div class="instruction-card">
+      <div class="icon">⏸️</div>
+      <div>أوقف الفيديو وطبّق الخطوة مع الطفل مباشرةً</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-prev" onclick="goTo(1)">→ السابق</button>
+    <button class="btn-next" onclick="goTo(3)">التالي ←</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card" id="page3">
+  <div class="no-activity-box">
+    <div class="big-icon">🚫📋</div>
+    <h3>لا يوجد أنشطة في هذه المهارة</h3>
+    <p>
+      هذه المهارة لا تحتاج إلى أنشطة منفصلة، لأن الطفل هنا لا <strong>يتعلم مفهوماً</strong> بل يستجيب لأمر مباشر.
+    </p>
+  </div>
+
+  <div class="reason-box">
+    <strong>لماذا لا توجد أنشطة؟</strong><br><br>
+    ✅ <strong>التقليد:</strong> الطفل ينفّذ حركة يراها مباشرة.<br>
+    ✅ <strong>الاستجابة الفورية:</strong> المهارة تُطبَّق لحظياً عند الطلب.<br>
+    ✅ <strong>التعليم داخل الحياة اليومية:</strong> لا تحتاج جلسة خاصة، بل تُطبَّق في المواقف الطبيعية مثل وقت اللعب ووقت الأكل والتنقل.<br><br>
+    👉 الهدف هو أن يعتاد الطفل على الاستجابة الفورية في أي بيئة وفي أي وقت.
+  </div>
+
+  <div class="nav">
+    <button class="btn-prev" onclick="goTo(2)">→ السابق</button>
+    <button class="btn-next" onclick="goTo(4)">التالي ←</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="card" id="page4">
+  <div class="eval-title">📊 تقييم الطفل</div>
+
+  <label class="eval-label">اسم الطفل</label>
+  <input class="eval-input" type="text" id="childName">
+
+  <label class="eval-label">العمر الزمني</label>
+  <input class="eval-input" type="text" id="childAge">
+
+  <label class="eval-label">المهارة</label>
+  <input class="eval-input" type="text" id="skill" value="افتح">
+
+  <div class="radio-group">
+    <div class="radio-title">النتيجة:</div>
+    <div class="radio-options">
+      <label><input type="radio" name="result" value="نجح" id="pass"> نجح ✅</label>
+      <label><input type="radio" name="result" value="لم ينجح" id="fail"> لم ينجح ❌</label>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div>اليوم: <span id="day">-</span></div>
+    <div>التاريخ الهجري: <span id="hijriDate">-</span></div>
+    <div>التاريخ الميلادي: <span id="gregorianDate">-</span></div>
+    <div>الوقت: <span id="time">-</span></div>
+  </div>
+
+  <div class="eval-buttons">
+    <button class="btn-save"     onclick="saveData()">💾 حفظ</button>
+    <button class="btn-download" onclick="downloadReport()">📥 تحميل</button>
+    <button class="btn-delete"   onclick="deleteData()">🗑️ حذف</button>
+  </div>
+
+  <div class="nav">
+    <button class="btn-prev" onclick="goTo(3)">→ السابق</button>
+    <button class="btn-restart" id="restartBtn" onclick="goTo(1)">🔄 إعادة</button>
+  </div>
+</div>
+
+<script>
+const total = 4;
+
+function goTo(n) {
+  if (n < 1 || n > total) return;
+  for (let i = 1; i <= total; i++) {
+    document.getElementById('page' + i).classList.remove('active');
+    const s = document.getElementById('s' + i);
+    s.classList.remove('active', 'done');
+    if (i < n)   s.classList.add('done');
+    if (i === n) s.classList.add('active');
+  }
+  document.getElementById('page' + n).classList.add('active');
+  document.getElementById('restartBtn').style.display = (n === total) ? 'block' : 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function saveData() {
+  const now = new Date();
+  const day           = now.toLocaleDateString('ar-SA', { weekday: 'long' });
+  const hijriDate     = now.toLocaleDateString('ar-SA-u-ca-islamic');
+  const gregorianDate = now.toLocaleDateString('en-GB');
+  const time          = now.toLocaleTimeString('ar-SA');
+
+  document.getElementById('day').textContent           = day;
+  document.getElementById('hijriDate').textContent     = hijriDate;
+  document.getElementById('gregorianDate').textContent = gregorianDate;
+  document.getElementById('time').textContent          = time;
+
+  const data = {
+    name:  document.getElementById('childName').value,
+    age:   document.getElementById('childAge').value,
+    skill: document.getElementById('skill').value,
+    result: document.querySelector('input[name="result"]:checked')?.value || '',
+    day, hijriDate, gregorianDate, time
+  };
+
+  localStorage.setItem('eval_iftah', JSON.stringify(data));
+  alert('تم حفظ التقييم بنجاح ✅');
+}
+
+window.onload = function () {
+  const saved = localStorage.getItem('eval_iftah');
+  if (!saved) return;
+  const data = JSON.parse(saved);
+  document.getElementById('childName').value = data.name  || '';
+  document.getElementById('childAge').value  = data.age   || '';
+  document.getElementById('skill').value     = data.skill || 'افتح';
+  if (data.result === 'نجح')      document.getElementById('pass').checked = true;
+  if (data.result === 'لم ينجح') document.getElementById('fail').checked = true;
+  document.getElementById('day').textContent           = data.day           || '-';
+  document.getElementById('hijriDate').textContent     = data.hijriDate     || '-';
+  document.getElementById('gregorianDate').textContent = data.gregorianDate || '-';
+  document.getElementById('time').textContent          = data.time          || '-';
+};
+
+function downloadReport() {
+  const raw = localStorage.getItem('eval_iftah');
+  if (!raw) { alert('احفظ التقييم أولاً'); return; }
+  const data = JSON.parse(raw);
+  const report =
+`تقرير تقييم الطفل
+==================
+اسم الطفل:         ${data.name}
+العمر الزمني:      ${data.age}
+المهارة:           ${data.skill}
+النتيجة:           ${data.result}
+اليوم:             ${data.day}
+التاريخ الهجري:    ${data.hijriDate}
+التاريخ الميلادي:  ${data.gregorianDate}
+الوقت:             ${data.time}
+`;
+  const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'تقرير_التقييم_افتح.txt';
+  link.click();
+}
+
+function deleteData() {
+  localStorage.removeItem('eval_iftah');
+  document.getElementById('childName').value = '';
+  document.getElementById('childAge').value  = '';
+  document.getElementById('skill').value     = 'افتح';
+  document.querySelectorAll('input[name="result"]').forEach(r => r.checked = false);
+  ['day','hijriDate','gregorianDate','time'].forEach(id => {
+    document.getElementById(id).textContent = '-';
+  });
+  alert('تم حذف البيانات 🗑️');
+}
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
